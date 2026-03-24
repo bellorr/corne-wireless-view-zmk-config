@@ -24,7 +24,7 @@ jobs:
       - name: Parse keymap
         run: keymap parse -c 10 -z config/corne.keymap > corne_keymap.yaml
       - name: Draw SVG
-        run: keymap draw corne_keymap.yaml > keymap.svg
+        run: keymap draw corne_keymap.yaml -j '{"draw_config": {"dark_mode": true}}' > keymap.svg
       - name: Commit and push
         run: |
           git config --global user.name "github-actions[bot]"
