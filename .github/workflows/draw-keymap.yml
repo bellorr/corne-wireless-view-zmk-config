@@ -1,0 +1,34 @@
+name: Update keymap drawing
+
+on:
+  push:
+    branches:
+      - master
+    paths: config/*
+
+  workflow_dispatch:
+
+jobs:
+  update_drawing:
+    name: Update drawing
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install keymap-drawer
+        run: pip install keymap-drawer
+      - name: Parse keymap
+        run: keymap parse -c 10 -z config/corne.keymap > corne_keymap.yaml
+      - name: Draw SVG
+        run: keymap draw corne_keymap.yaml > keymap.svg
+      - name: Commit and push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add keymap.svg corne_keymap.yaml
+          git commit -m "update keymap drawing" || true
+          git push origin master
