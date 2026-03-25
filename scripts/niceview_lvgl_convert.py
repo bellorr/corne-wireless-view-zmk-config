@@ -26,11 +26,11 @@ def process_image(path, args):
     path = Path(path)
     stem = "".join(c if c.isalnum() else "_" for c in path.stem)
     with Image.open(path) as im:
-        inner_h = args.width - 2 * args.pad_y
-        im = im.convert("L").resize((inner_h, args.height), Image.LANCZOS)
+        inner_height = args.height - 2 * args.pad_y
+        im = im.convert("L").resize((args.width, inner_height), Image.LANCZOS)
         if args.pad_y:
             padded = Image.new("L", (args.width, args.height), 255)
-            padded.paste(im, (args.pad_y, 0))
+            padded.paste(im, (0, args.pad_y))
             im = padded
         if not args.no_rotate:
             im = im.transpose(Image.ROTATE_270)
