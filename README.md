@@ -11,3 +11,5 @@ Based on [markstos's layout](https://mark.stosberg.com/markstos-corne-3x5-1-keyb
 - [n3oney/zmk-config](https://github.com/n3oney/zmk-config)
 - [dapetri/zmk-config-corne](https://github.com/dapetri/zmk-config-corne)
 - [nickcoutsos/keymap-editor](https://github.com/nickcoutsos/keymap-editor)
+- [M165437/nice-view-gem](https://github.com/M165437/nice-view-gem)
+- [YousefHadder/corne-zmk](https://github.com/YousefHadder/corne-zmk)
