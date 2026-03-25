@@ -1,0 +1,33 @@
+name: Update Nice!View Images
+on:
+  push:
+    paths:
+      - 'assets/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install Pillow
+      - name: Convert images
+        run: |
+          mkdir -p converted
+          find assets -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) \
+            -exec python3 scripts/niceview_lvgl_convert.py {} --outdir converted \;
+      - name: Write art.c
+        run: python3 scripts/write_art_c.py
+      - name: Commit and push
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add boards/shields/nice_view_gem/assets/art.c
+          git diff --staged --quiet || git commit -m "chore: regenerate nice!view art from assets"
+          git push
