@@ -66,8 +66,8 @@ const lv_img_dsc_t {stem} = {{
     .header.cf = LV_IMG_CF_INDEXED_1BIT,
     .header.always_zero = 0,
     .header.reserved = 0,
-    .header.w = {h if not args.no_rotate else w},
-    .header.h = {w if not args.no_rotate else h},
+    .header.w = {w},
+    .header.h = {h},
     .data_size = sizeof({stem}_map),
     .data = {stem}_map,
 }};
