@@ -18,6 +18,7 @@ def parse_args(argv=None):
     p.add_argument("--no-dither", action="store_true")
     p.add_argument("--no-rotate", action="store_true")
     p.add_argument("--lsb-first", action="store_true")
+    p.add_argument("--pad-y", type=int, default=0, help="Pixels of white padding on top and bottom")
     return p.parse_args(argv)
 
 
@@ -25,7 +26,12 @@ def process_image(path, args):
     path = Path(path)
     stem = "".join(c if c.isalnum() else "_" for c in path.stem)
     with Image.open(path) as im:
-        im = im.convert("L").resize((args.width, args.height), Image.LANCZOS)
+        inner_h = args.width - 2 * args.pad_y
+        im = im.convert("L").resize((inner_h, args.height), Image.LANCZOS)
+        if args.pad_y:
+            padded = Image.new("L", (args.width, args.height), 255)
+            padded.paste(im, (args.pad_y, 0))
+            im = padded
         if not args.no_rotate:
             im = im.transpose(Image.ROTATE_270)
         bw = im.convert("1") if not args.no_dither else im.point(lambda p: 255 if p >= 128 else 0, "1")
