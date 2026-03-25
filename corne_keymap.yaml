@@ -1,6 +1,6 @@
 layout: {zmk_keyboard: corne}
 layers:
-  qwerty:
+  QWERTY:
   - [TAB, Q, W, E, R, T, Y, U, I, O]
   - - P
     - DELETE
@@ -27,14 +27,14 @@ layers:
     - ','
     - .
     - /
-    - {t: function, h: sticky}
+    - {t: FUNC, h: sticky}
     - {t: LCTRL, h: sticky}
     - {t: ENTER, h: LEFT GUI}
-    - {t: TAB, h: lower}
-    - {t: SPACE, h: upper}
+    - {t: TAB, h: LOWER}
+    - {t: SPACE, h: UPPER}
   - - BACKSPACE
     - {t: RIGHT SHIFT, h: sticky}
-  lower:
+  LOWER:
   - - {t: ▽, type: trans}
     - '!'
     - '@'
@@ -77,7 +77,7 @@ layers:
     - SPACE
   - - {t: ▽, type: trans}
     - ':'
-  upper:
+  UPPER:
   - - {t: ▽, type: trans}
     - DELETE
     - {t: ▽, type: trans}
@@ -120,7 +120,7 @@ layers:
     - {type: held}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-  function:
+  FUNC:
   - - {t: ▽, type: trans}
     - F1
     - F2
@@ -166,4 +166,4 @@ layers:
 combos:
 - p: [19, 20]
   k: ESC
-  l: [qwerty]
+  l: [QWERTY]
