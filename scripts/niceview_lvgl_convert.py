@@ -26,7 +26,10 @@ def process_image(path, args):
     stem = "".join(c if c.isalnum() else "_" for c in path.stem)
     with Image.open(path) as im:
         im = im.convert("L")
-        im = im.crop(im.getbbox())
+        inverted = im.point(lambda p: 255 - p)
+        bbox = inverted.getbbox()
+        if bbox:
+            im = im.crop(bbox)
         im = im.resize((args.width, args.height), Image.LANCZOS)
         if not args.no_rotate:
             im = im.transpose(Image.ROTATE_270)
