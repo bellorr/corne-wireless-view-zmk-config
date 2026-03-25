@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir -p converted
           find assets -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) \
-            -exec python3 scripts/niceview_lvgl_convert.py {} --outdir converted --width 68 --height 124 \;
+            -exec python3 scripts/niceview_lvgl_convert.py {} --outdir converted --width 68 --height 92 \;
       - name: Write art.c
         run: python3 scripts/write_art_c.py
       - name: Commit and push

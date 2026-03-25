@@ -21,5 +21,5 @@ void draw_animation(lv_obj_t *canvas) {
     lv_img_set_src(art, anim_imgs[0]);
 #endif
 
-    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 0);
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
 }
