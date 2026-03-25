@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble boards/shields/nice_view_gem/assets/art.c from converted/*.c files."""
+"""Assemble config/boards/shields/nice_view_gem/assets/art.c from converted/*.c files."""
 import argparse
 import re
 from pathlib import Path
@@ -12,7 +12,7 @@ HEADER = """\
 #endif
 
 """
-OUTPUT = Path("boards/shields/nice_view_gem/assets/art.c")
+OUTPUT = Path("config/boards/shields/nice_view_gem/assets/art.c")
 
 
 def assemble(converted_dir=Path("converted"), output=OUTPUT):
