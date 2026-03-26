@@ -148,8 +148,8 @@ layers:
     - {t: ▽, type: trans}
     - CAPS
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - Gui+Sft+C
+    - Gui+Sft+SPACE
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
