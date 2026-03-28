@@ -23,7 +23,7 @@ jobs:
           python3 scripts/niceview_lvgl_convert.py assets/fsociety.png \
             --outdir converted_peripheral --width 68 --height 124 --no-dither
           python3 scripts/niceview_lvgl_convert.py assets/htp_skull.png \
-            --outdir converted_central --width 68 --height 68 --no-dither
+            --outdir converted_central --width 68 --height 85 --no-dither
       - name: Write art.c files
         run: |
           python3 scripts/write_art_c.py \

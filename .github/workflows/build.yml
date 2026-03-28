@@ -4,9 +4,6 @@ on:
       - 'assets/**'
   pull_request:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Update Nice!View Images"]
-    types: [completed]
 
 jobs:
   build:
