@@ -15,7 +15,7 @@ HEADER = """\
 OUTPUT = Path("config/boards/shields/nice_view_gem/assets/art.c")
 
 
-def assemble(converted_dir=Path("converted"), output=OUTPUT):
+def assemble(converted_dir=Path("converted"), output=OUTPUT, prefix="anim_imgs"):
     files = sorted(Path(converted_dir).glob("*.c"))
     if not files:
         raise FileNotFoundError(f"No .c files in {converted_dir}")
@@ -29,10 +29,10 @@ def assemble(converted_dir=Path("converted"), output=OUTPUT):
         stems.append(m.group(1))
         parts += [f"// --- {m.group(1)} ---\n", content, "\n"]
     parts += [
-        "const lv_img_dsc_t *anim_imgs[] = {\n",
+        f"const lv_img_dsc_t *{prefix}[] = {{\n",
         *[f"    &{s},\n" for s in stems],
         "};\n",
-        "const int anim_imgs_len = sizeof(anim_imgs) / sizeof(anim_imgs[0]);\n",
+        f"const int {prefix}_len = sizeof({prefix}) / sizeof({prefix}[0]);\n",
     ]
     Path(output).write_text("".join(parts))
     print(f"Wrote {output} with {len(stems)} image(s): {', '.join(stems)}")
@@ -42,5 +42,6 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--converted", default="converted")
     p.add_argument("--output", default=str(OUTPUT))
+    p.add_argument("--prefix", default="anim_imgs")
     a = p.parse_args()
-    assemble(a.converted, a.output)
+    assemble(a.converted, a.output, a.prefix)
