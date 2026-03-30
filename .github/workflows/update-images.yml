@@ -20,9 +20,9 @@ jobs:
       - name: Convert images
         run: |
           mkdir -p converted_peripheral converted_central
-          python3 scripts/niceview_lvgl_convert.py assets/fsociety.png \
+          python3 scripts/niceview_lvgl_convert.py assets/right.png \
             --outdir converted_peripheral --width 68 --height 124 --no-dither
-          python3 scripts/niceview_lvgl_convert.py assets/htp_skull.png \
+          python3 scripts/niceview_lvgl_convert.py assets/left.png \
             --outdir converted_central --width 68 --height 85 --no-dither
       - name: Write art.c files
         run: |
